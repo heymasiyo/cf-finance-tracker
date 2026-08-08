@@ -2,8 +2,8 @@
   "name": "cf-finance-tracker",
   "private": true,
   "scripts": {
-    "format": "oxfmt --write .",
-    "format:check": "oxfmt --check ."
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
   },
   "devDependencies": {
     "oxfmt": "^0.62.0"
