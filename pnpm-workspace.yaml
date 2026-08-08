@@ -1,8 +1,15 @@
 packages:
   - "apps/*"
   - "packages/*"
+
 allowBuilds:
   esbuild: true
-  workerd: true
+  workerd: false
+
+catalog:
+  "@types/node": ^24.13.1
+  "typescript": ^6
+  "valibot": ^1.4.2
+
 minimumReleaseAgeExclude:
   - hono@4.13.1
