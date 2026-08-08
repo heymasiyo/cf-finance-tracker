@@ -8,5 +8,11 @@ export type Context = {
   };
   Bindings: {
     DB: D1Database;
+    BASIC_RATE_LIMITER: RateLimit;
+    PROTECTED_RATE_LIMITER: RateLimit;
+
+    BASIC_AUTH_USERNAME: string;
+    BASIC_AUTH_PASSWORD: string;
+    SECRET_KEY: string;
   };
 };
