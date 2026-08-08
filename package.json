@@ -2,6 +2,8 @@
   "name": "cf-finance-tracker",
   "private": true,
   "scripts": {
+    "dev:api": "pnpm --filter @repo/api dev",
+    "dev:api:typegen": "pnpm --filter @repo/api cf-typegen",
     "format": "oxfmt",
     "format:check": "oxfmt --check"
   },
