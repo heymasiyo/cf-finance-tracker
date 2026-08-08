@@ -1,5 +1,15 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "sortImports": {
+    "groups": [
+      "builtin",
+      "external",
+      ["internal", "subpath"],
+      ["parent", "sibling", "index"],
+      "style",
+      "unknown"
+    ]
+  },
   "endOfLine": "lf",
   "semi": true,
   "singleQuote": false,
@@ -12,6 +22,7 @@
     "dist",
     "build",
     "coverage",
-    "worker-configuration.d.ts"
+    "worker-configuration.d.ts",
+    "migrations"
   ]
 }

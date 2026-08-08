@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
 import { parse } from "jsonc-parser";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));

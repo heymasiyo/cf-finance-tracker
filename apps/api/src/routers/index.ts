@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+
 import { coreRouter } from "@/routers/core";
 
 const app = new Hono();
