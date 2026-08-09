@@ -4,7 +4,7 @@ import { HTTPException } from "hono/http-exception";
 
 import { isEmailExists, createUser } from "@/db/queries/auth";
 import { Context } from "@/lib/types";
-import { encrypt } from "@/lib/utils";
+import { encrypt, isEmpty } from "@/lib/utils";
 import { basicMiddleware } from "@/middleware";
 import { sValidator } from "@/middleware/standard-validator";
 
@@ -23,12 +23,17 @@ app.post("/sign-up/email", sValidator("json", signUpEmailSchema), async (c) => {
   }
 
   const password = await encrypt(body.password, c.env.SECRET_KEY);
-  await createUser(db, {
+  const user = await createUser(db, {
     name: body.name,
     email: body.email,
     emailVerified: false,
     password
   });
+  if (isEmpty(user)) {
+    throw new HTTPException(400, {
+      message: "Failed to create account. Please check your data and try again"
+    });
+  }
 
   return c.json(
     {

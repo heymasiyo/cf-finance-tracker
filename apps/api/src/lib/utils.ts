@@ -136,3 +136,35 @@ export async function decryptJson<T = unknown>(
   const decryptedText = await decrypt(encryptedDataString, secretKey);
   return JSON.parse(decryptedText) as T;
 }
+
+export function isEmpty(value: unknown): boolean {
+  if (value === null || value === undefined) {
+    return true;
+  }
+
+  if (typeof value === "string") {
+    return value.trim().length === 0;
+  }
+
+  if (Array.isArray(value)) {
+    return value.length === 0;
+  }
+
+  if (value instanceof Set || value instanceof Map) {
+    return value.size === 0;
+  }
+
+  if (value instanceof Date) {
+    return isNaN(value.getTime());
+  }
+
+  if (value instanceof RegExp) {
+    return false;
+  }
+
+  if (typeof value === "object") {
+    return Object.keys(value as object).length === 0;
+  }
+
+  return false;
+}
