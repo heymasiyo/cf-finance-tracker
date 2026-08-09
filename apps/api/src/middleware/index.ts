@@ -2,7 +2,11 @@ import type { MiddlewareHandler } from "hono";
 
 import { withBasicAuth } from "@/middleware/basic-auth";
 import { withDatabase } from "@/middleware/db";
-import { withBasicRateLimiter } from "@/middleware/rate-limiter";
+import { withProtectedAuth } from "@/middleware/protected-auth";
+import {
+  withBasicRateLimiter,
+  withProtectedRateLimiter
+} from "@/middleware/rate-limiter";
 import { withRequestInfo } from "@/middleware/request-info";
 
 export const publicMiddleware: MiddlewareHandler[] = [
@@ -15,4 +19,11 @@ export const basicMiddleware: MiddlewareHandler[] = [
   withDatabase,
   withBasicAuth,
   withBasicRateLimiter
+];
+
+export const protectedMiddleware: MiddlewareHandler[] = [
+  withRequestInfo,
+  withDatabase,
+  withProtectedAuth,
+  withProtectedRateLimiter
 ];

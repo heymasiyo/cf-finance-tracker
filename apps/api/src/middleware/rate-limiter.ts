@@ -17,3 +17,18 @@ export const withBasicRateLimiter: MiddlewareHandler<Context> = async (
 ) => {
   return basicLimiter(c, next);
 };
+
+const protectedLimiter = rateLimiter<Context>({
+  binding: (c) => c.env.PROTECTED_RATE_LIMITER,
+  keyGenerator: (c) => {
+    return c.get("session").userId.toString() ?? (c.get("clientIp") as string);
+  },
+  message: "Too many requests. Please try again later",
+  statusCode: 429
+});
+export const withProtectedRateLimiter: MiddlewareHandler<Context> = async (
+  c,
+  next
+) => {
+  return protectedLimiter(c, next);
+};

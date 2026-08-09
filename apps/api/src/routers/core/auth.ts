@@ -7,11 +7,12 @@ import {
   isEmailExists,
   createUser,
   getUserByEmail,
-  createSession
+  createSession,
+  deleteSessionByToken
 } from "@/db/queries/auth";
 import { Context } from "@/lib/types";
 import { encrypt, isEmpty, decrypt } from "@/lib/utils";
-import { basicMiddleware } from "@/middleware";
+import { basicMiddleware, protectedMiddleware } from "@/middleware";
 import { sValidator } from "@/middleware/standard-validator";
 
 const app = new Hono<Context>();
@@ -94,6 +95,21 @@ app.post("/sign-in/email", sValidator("json", signInEmailSchema), async (c) => {
         tokenExpiresAt,
         tokenType: "Bearer"
       }
+    },
+    200
+  );
+});
+
+app.use("/sign-out", ...protectedMiddleware);
+app.post("/sign-out", async (c) => {
+  const db = c.get("db");
+  const session = c.get("session");
+
+  await deleteSessionByToken(db, session.token);
+
+  return c.json(
+    {
+      message: "Sign out successful"
     },
     200
   );

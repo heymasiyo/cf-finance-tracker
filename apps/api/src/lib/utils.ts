@@ -1,7 +1,8 @@
 import type { StandardSchemaV1 } from "@standard-schema/spec";
 import type { Context as HonoContext } from "hono";
+import { verify } from "hono/jwt";
 
-import type { Context } from "@/lib/types";
+import type { Context, JWTPayload } from "@/lib/types";
 
 export function getRequestInfo(c: HonoContext<Context>) {
   const clientIp =
@@ -167,4 +168,25 @@ export function isEmpty(value: unknown): boolean {
   }
 
   return false;
+}
+
+export async function verifyToken(
+  c: HonoContext<Context>,
+  token?: string
+): Promise<JWTPayload | null> {
+  if (!token) return null;
+
+  try {
+    const payload = (await verify(
+      token,
+      c.env.SECRET_KEY,
+      "HS256"
+    )) as JWTPayload;
+
+    return payload;
+  } catch {
+    // method failed
+  }
+
+  return null;
 }
