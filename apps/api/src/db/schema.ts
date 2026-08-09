@@ -13,7 +13,7 @@ export const user = sqliteTable("user", {
 
 export const session = sqliteTable("session", {
   id: integer({ mode: "number" }).primaryKey({ autoIncrement: true }),
-  userId: integer({ mode: "number" })
+  userId: integer("user_id", { mode: "number" })
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
   token: text().notNull().unique(),
