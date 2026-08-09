@@ -23,6 +23,15 @@ importers:
 
   apps/api:
     dependencies:
+      '@hono/standard-validator':
+        specifier: ^0.4.0
+        version: 0.4.0(@standard-schema/spec@1.1.0)(hono@4.13.1)
+      '@repo/schemas':
+        specifier: workspace:*
+        version: link:../../packages/schemas
+      '@standard-schema/spec':
+        specifier: ^1.1.0
+        version: 1.1.0
       dotenv:
         specifier: ^17.4.2
         version: 17.4.2
@@ -571,6 +580,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@hono/standard-validator@0.4.0':
+    resolution: {integrity: sha512-MxOm1asDh9j7c1D0KiWwppSbFgAQxTRO4YEhjMrJn3lF1BIcXenPdgjSGKDRfQmZdaTaMA8slQLETgVOKyJxFw==}
+    peerDependencies:
+      '@standard-schema/spec': ^1.0.0
+      hono: '>=4.11.2'
+
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
     engines: {node: '>=18'}
@@ -880,6 +895,9 @@ packages:
 
   '@speed-highlight/core@1.2.23':
     resolution: {integrity: sha512-iRoq6i6JDJP6Mt2A5JaPvzw0pgYHH6k92ij+yXiTrB7T2y9N789aWE3EHWj/5ztlJBokcCBja3iYLVdu5wgnkg==}
+
+  '@standard-schema/spec@1.1.0':
+    resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
   '@types/node@26.1.2':
     resolution: {integrity: sha512-Vu4a5UFA9rIIFJ7rB/Vaafh9lrCQszopTCx6KjFboXTGQbPNasehVR5TEiithSDGyd1DEiUByggTZsg8jukeIg==}
@@ -1426,6 +1444,11 @@ snapshots:
   '@esbuild/win32-x64@0.28.1':
     optional: true
 
+  '@hono/standard-validator@0.4.0(@standard-schema/spec@1.1.0)(hono@4.13.1)':
+    dependencies:
+      '@standard-schema/spec': 1.1.0
+      hono: 4.13.1
+
   '@img/colour@1.1.0': {}
 
   '@img/sharp-darwin-arm64@0.35.2':
@@ -1613,6 +1636,8 @@ snapshots:
   '@sindresorhus/is@7.2.0': {}
 
   '@speed-highlight/core@1.2.23': {}
+
+  '@standard-schema/spec@1.1.0': {}
 
   '@types/node@26.1.2':
     dependencies:

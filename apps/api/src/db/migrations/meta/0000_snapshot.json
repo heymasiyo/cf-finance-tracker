@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "acb7b589-9bf6-4f6a-aeaa-8fcdd4f754c6",
+  "id": "89b73db5-e1fe-4707-9748-ea5eae57f2aa",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "session": {
@@ -109,8 +109,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "emaiVerified": {
-          "name": "emaiVerified",
+        "email_verified": {
+          "name": "email_verified",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,

@@ -4,7 +4,7 @@ export const user = sqliteTable("user", {
   id: integer({ mode: "number" }).primaryKey({ autoIncrement: true }),
   name: text().notNull(),
   email: text().notNull().unique(),
-  emaiVerified: integer({ mode: "boolean" }).notNull(),
+  emailVerified: integer("email_verified", { mode: "boolean" }).notNull(),
   password: text().notNull(),
   image: text(),
   createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
